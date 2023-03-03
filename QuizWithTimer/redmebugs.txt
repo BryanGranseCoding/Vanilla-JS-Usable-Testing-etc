@@ -1,0 +1,3 @@
+Known bugs below:
+
+1. When user started the quiz and thetimer runs out the quiz should not automatically end it should be redirected to the next question incase there are still questions left, if not then that's the time you are going to end the quiz.

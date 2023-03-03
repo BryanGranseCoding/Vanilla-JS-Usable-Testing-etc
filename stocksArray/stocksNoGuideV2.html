@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="styles.css" />
+    <title>Market Analysis Looping</title>
+  </head>
+
+  <body>
+    <table id="stocks">
+      <thead>
+        <tr>
+          <th>Company</th>
+          <th>Symbol</th>
+          <th>Industry</th>
+          <th>Shares (in Billion)</th>
+          <th>Price</th>
+          <th>Beta</th>
+        </tr>
+      </thead>
+      <tr>
+        <td>Microsoft</td>
+        <td>MSFT</td>
+        <td>Tech</td>
+        <td>7.46</td>
+        <td>220</td>
+        <td>0.96</td>
+      </tr>
+      <tr>
+        <td>Apple</td>
+        <td>APPL</td>
+        <td>Tech</td>
+        <td>16.07</td>
+        <td>142</td>
+        <td>1.25</td>
+      </tr>
+      <tr>
+        <td>Amazon</td>
+        <td>AMZN</td>
+        <td>Retail</td>
+        <td>10.19</td>
+        <td>113</td>
+        <td>1.32</td>
+      </tr>
+      <tr>
+        <td>Alphabet Inc.</td>
+        <td>GOOG</td>
+        <td>Tech</td>
+        <td>13</td>
+        <td>100</td>
+        <td>1.10</td>
+      </tr>
+      <tr>
+        <td>Walmart</td>
+        <td>WMT</td>
+        <td>Retail</td>
+        <td>2.71</td>
+        <td>131</td>
+        <td>0.51</td>
+      </tr>
+      <tr>
+        <td>Exxon Mobil</td>
+        <td>XOM</td>
+        <td>Petroleum</td>
+        <td>4.17</td>
+        <td>101</td>
+        <td>1.05</td>
+      </tr>
+      <tr>
+        <td>JP Morgan</td>
+        <td>JPM</td>
+        <td>Financial Services</td>
+        <td>2.93</td>
+        <td>115</td>
+        <td>1.07</td>
+      </tr>
+      <tr>
+        <td>Intel</td>
+        <td>INTC</td>
+        <td>Tech</td>
+        <td>4.11</td>
+        <td>26</td>
+        <td>0.71</td>
+      </tr>
+      <tr>
+        <td>International Business Machines</td>
+        <td>IBM</td>
+        <td>Tech</td>
+        <td>0.9</td>
+        <td>121</td>
+        <td>0.83</td>
+      </tr>
+      <tr>
+        <td>Tesla</td>
+        <td>TSLA</td>
+        <td>Automotive</td>
+        <td>3.13</td>
+        <td>215</td>
+        <td>2.13</td>
+      </tr>
+      <tr>
+        <td>Pfizer</td>
+        <td>PFE</td>
+        <td>Pharmaceuticals</td>
+        <td>5.61</td>
+        <td>43</td>
+        <td>0.64</td>
+      </tr>
+      <tr>
+        <td>DocuSign</td>
+        <td>DOCU</td>
+        <td>Tech</td>
+        <td>0.2</td>
+        <td>46</td>
+        <td>1.21</td>
+      </tr>
+      <tr>
+        <td>EPAM Systems</td>
+        <td>EPAM</td>
+        <td>Tech</td>
+        <td>0.057</td>
+        <td>333</td>
+        <td>1.68</td>
+      </tr>
+      <tr>
+        <td>GitLab</td>
+        <td>GTLB</td>
+        <td>Software</td>
+        <td>0.148</td>
+        <td>45</td>
+        <td></td>
+      </tr>
+    </table>
+  </body>
+
+  <script>
+    // USE For-Of Loop, .at(), Map() constructor, Number Constructor, Array.From (for table convert) \\
+    const table = document.getElementById("stocks");
+    const rows = table.getElementsByTagName("tr");
+    const dataTable = [];
+
+    //TODO 1: Extract All Data from a Table
+    for (let i of rows) {
+      dataTable.push(i.innerText.split("\t"));
+    }
+    console.log(dataTable);
+    //TODO 2: remove the TH or Heading Part of Table
+    const dataStocks = [];
+    const arrayRows = Array.from(rows).slice(1);
+    for (let arrayRow of arrayRows) {
+      dataStocks.push(arrayRow.innerText.split("\t"));
+    }
+    console.log(dataStocks);
+    //TODO 3: Extract The Company, Symbol, and Price
+    for (let companyRow of dataStocks) {
+      const myCompany = companyRow.at(0);
+      const symbol = companyRow.at(1);
+      const price = companyRow.at(4);
+      console.log(
+        `The ${myCompany} Symbol is: ${symbol} and Price is: ${price}`
+      );
+    }
+    //TODO 4: Take Shares and Price then get the product
+    let sharesPrice = new Map();
+    for (let product of dataStocks) {
+      const companies = product[0];
+      const totalData = Number(product[3]) * Number(product.at(4));
+      sharesPrice.set(companies, totalData);
+    }
+    console.log(sharesPrice);
+    //TODO 5: Check The Largest and Smallest Capital of a Company
+    const largestCompany = [];
+    const smallestCompany = [];
+    const marketCap = 200;
+    for (let limitStocks of sharesPrice) {
+      if (limitStocks[1] >= marketCap) {
+        largestCompany.push(limitStocks[0]);
+      } else {
+        smallestCompany.push(limitStocks.at(0));
+      }
+    }
+    console.log("The Largest Company Are: ", largestCompany);
+    console.log("The Smallest Company Are: ", smallestCompany);
+    //TODO 6: Display Company with A Tech Industry Category Only
+    const techCompany = [];
+    let technology = "Tech";
+    for (let techCompanies of dataStocks) {
+      if (techCompanies.at(2) === technology) {
+        techCompany.push(techCompanies.at(0));
+      } else {
+        console.log("No Tech Company Available");
+      }
+    }
+    console.log("The Company with Tech Categories Are:", techCompany);
+  </script>
+</html>

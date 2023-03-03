@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random String</title>
+    <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+    <main>
+    <div class="randonText" id="textRandom">
+        <blockquote id="outputText">Display Random Text Here</blockquote>
+        <p class="chapterVerse">~<span id="bibleBookName">Book Name in The Bible Here</span></p>
+        <button class="button-24" value="Generate Verse" id="generate" role="button">Generate Verse</button>
+        <div class="showTime" id="countdown"><span id="showtime"></span></div>
+    </div>
+    </main>
+
+    <script defer type="text/javascript">
+        var countDownDate = new Date("Jan 5, 2024 15:37:01").getTime();
+        const outputText = document.querySelector('#outputText');
+        const generate = document.querySelector('#generate');
+        const spanTime = document.querySelector('#showtime');
+        const divTime = document.querySelector('#countdown');
+        //Data of String to make as Random
+        const verse = [
+            {
+                quote: "\“Therefore, go and make disciples of all nations, baptizing them in the name of the Father and of the Son and of the Holy Spirit.\”",
+                book: "Matthew 28:19"
+            },
+            {
+                quote: "\“He said to me, \‘My grace is enough for you, because power is made perfect in weakness.\’ So I\’ll gladly spend my time bragging about my weaknesses so that Christ\’s power can rest on me.\”",
+                book: "2 Corinthians 12:9",
+            },
+            {
+                quote: "\“Throw all your anxiety onto him, because he cares about you.\”",
+                book: "1 Peter 5:7"
+            },
+            {
+                quote: "\“It\’s impossible to please God without faith because the one who draws near to God must believe that he exists and that he rewards people who try to find him.\”",
+                book: "Hebrews 11:6"
+            },
+            {
+                quote: "\“He was pierced because of our rebellions and crushed because of our crimes. He bore the punishment that made us whole; by his wounds we are healed.\”",
+                book: "Isaiah 53:5"
+            },
+        ];
+        //random object array using sort() method with Math.random
+       const randomVerse = verse.sort(() =>{return 0.5 - Math.random()});
+       // console.log(randomVerse);
+        let shiftVerse;
+       function getRandomVerse() { 
+        shiftVerse = verse.shift();
+       //check array length
+        if(verse.length > 0) {
+        outputText.textContent = shiftVerse.quote;
+        document.getElementById('bibleBookName').textContent = shiftVerse.book;
+        } else {
+        //generate.setAttribute('disabled', true)
+        generate.textContent = "No More Verse Available Reloading...";
+        generate.setAttribute('disabled', true);
+        generate.classList.add('emptyVerse');
+        setInterval(countdown(), 1000);
+                //2 Seconds Countdown
+        setTimeout(() => {
+            refreshPage()
+        }, 3000);
+        //generate.addEventListener('click', refreshPage);
+        }
+} 
+
+       
+       generate.addEventListener('click', getRandomVerse);
+
+      getRandomVerse();
+        //UTILITY FUNCTIONS BELOW
+       //refresh page
+        const refreshPage = () => {
+        location.reload();
+        }
+        function countdown() {
+            var timeleft = 3;
+            var downloadTimer = setInterval(function(){
+            timeleft--;
+            document.getElementById("showtime").textContent = `${timeleft} seconds...`;
+            if(timeleft <= 0)
+                clearInterval(downloadTimer);
+            },1000);
+        }
+        
+    </script>
+    
+</body>
+</html>

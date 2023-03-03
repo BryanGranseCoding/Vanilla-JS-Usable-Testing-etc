@@ -1,0 +1,81 @@
+@import url('https://fonts.googleapis.com/css?family=Special+Elite');
+.hidden { display: none;}
+blockquote#outputText, #bibleBookName{
+  font-family: 'Special Elite', cursive;
+}
+div.hideTime{
+font-family: 'Special Elite', cursive;
+font-size: 0.9em;
+font-weight: bold;
+text-align: center;
+margin: 0 10px;
+color: orange;
+opacity: 0;
+height: 0;
+}
+div.showTime{
+    opacity: 1;
+    height: auto;
+    color: rgb(116, 117, 117);
+    display: inline-block;
+}
+span#bibleBookName{
+    font-weight: bolder;
+}
+p.chapterVerse{
+    font-weight: bolder; 
+    font-size: 1.2em;
+}
+.emptyVerse{
+    background: blanchedalmond;
+}
+
+/* BUTTON CSS */
+.button-24 {
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 1px;
+  padding: 2px 2px 3px;
+  outline: 0;
+  border-radius: 5px;
+  border: 1px solid rgb(110, 108, 108);
+  cursor: pointer;
+  position: relative;
+  background-color: rgba(0, 0, 0, 0);
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.button-24:after {
+  content: "";
+  background-color: #ffe54c;
+  width: 100%;
+  z-index: -1;
+  position: absolute;
+  height: 100%;
+  top: 7px;
+  left: 7px;
+  transition: 0.5s;
+}
+.button-24:hover{
+  font-size: 12px;
+  font-weight: 700;
+}
+.button-24:active{
+  font-size: 12px;
+  font-weight: 700;
+}
+.button-24:hover:after {
+  top: 0px;
+  left: 0px;
+}
+
+@media (min-width: 768px) {
+  .button-24 {
+    padding: 13px 50px 13px;
+  }
+}
+
+
+

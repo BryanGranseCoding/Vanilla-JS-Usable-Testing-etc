@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <meta charset="utf-8" />
+    <title>Quiz with Timer</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header>
+      <h1>Quiz with Timer</h1>
+      <div id="completeQuizStatus"></div>
+      <p>Score: <span id="score">0</span>/<span id="completed">0</span>
+      <span id="countdownTimer" class="hidden">| Time Left: <span id="timerStatus"></span></span</p>
+    </header>
+
+    <main>
+      <div id="statement" class="hidden">
+      </div>
+      <img src="./img/quiztime.gif" id="gifResult"  alt="">
+      <div id="options"></div>
+
+      <div id="explanation"></div>
+      <div id="nextButton">
+        <button id="nextQuestion">Start Quiz</button>
+      </div>
+    </main>
+
+    <script src="./script.js"></script>
+  </body>
+</html>
