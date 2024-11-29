@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:image" content="./public/demo/page1.jpg">
+    <meta name="description" content="The 2024 Moldovan European Union Membership Referendum was a historic vote held on March 5, 2024, to determine whether Moldova should join the European Union (EU)<sup>[1]</sup>. This referendum marked a crucial moment in Moldova's political landscape, reflecting the country's aspirations for closer ties with Western Europe and its complex relationship with neighboring countries and geopolitical influences.">
+    <meta name="keywords" content="Moldovan 2024, Moldovan Membership Referendum, historic vote, janelz">
+    <meta name="author" content="James Scott">
+    <link rel="shortcut icon" href=".././public/img/favicon.ico" type="image/x-icon">
+    <title>2024 Moldovan European Union Membership Referendum</title>
+    <style>
+        /* Base styles */
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Lato', 'Helvetica', 'Arial', sans-serif;
+            line-height: 1.6;
+            font-size: 16px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            font-family: Georgia, serif;
+        }
+        h1 { 
+            font-size: 29px;
+            font-family: Georgia, serif;
+        }
+        h2 { font-size: 1.5rem; }
+
+        /* Layout */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+        .flex { display: flex; }
+        .flex-col { flex-direction: column; }
+        .flex-1 { flex: 1; }
+        .items-center { align-items: center; }
+        .justify-between { justify-content: space-between; }
+        .space-x-4 > * + * { margin-left: 1rem; }
+
+        /* Header */
+        .header {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            border-bottom: 1px solid #a2a9b1;
+            position: relative;
+            background-color: white;
+            padding-left: 2.75rem;
+            padding-right: 2.75rem;
+        }
+        .burger-menu {
+            font-size: 20px;
+            cursor: pointer;
+            margin-right: 15px;
+        }
+        .logo {
+            font-weight: bold;
+            font-size: 24px;
+            margin-right: 20px;
+        }
+        .logo > a {
+            text-decoration: none;
+            color: #000;
+        }
+        .logo > a:hover {
+            color: #0645ad;
+        }
+        .search-bar {
+            display: flex;
+            align-items: center;
+            width: 300px;
+            margin-right: auto;
+        }
+        .search-bar input {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #a2a9b1;
+            border-radius: 2px 0 0 2px;
+        }
+        .search-bar button {
+            padding: 8px 12px;
+            background-color: #000;
+            color: white;
+            border: none;
+            border-radius: 0 2px 2px 0;
+            cursor: pointer;
+        }
+        .right-links {
+            display: flex;
+            align-items: center;
+        }
+        .right-links a {
+            margin-left: 15px;
+            text-decoration: none;
+            color: #202122;
+        }
+        .three-dots {
+            font-size: 20px;
+            cursor: pointer;
+            margin-left: 15px;
+        }
+
+        /* Main content */
+        .main-content {
+            display: flex;
+            padding: 20px;
+            /*max-width: 1200px;*/
+            margin: 0 auto;
+            flex: 1;
+        }
+        .sidebar-left {
+            width: 250px;
+            background-color: white;
+            border-right: 1px solid #e5e7eb;
+            padding: 1rem;
+            height: calc(100vh - 60px);
+            position: sticky;
+            top: 0;
+            overflow-y: auto;
+        }
+        .main-article {
+            flex: 1;
+            padding: 0.6rem 1rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .sidebar-right {
+            width: 250px;
+            background-color: white;
+            border-left: 1px solid #e5e7eb;
+            padding: 1rem;
+            height: calc(100vh - 60px);
+            position: sticky;
+            top: 0;
+            overflow-y: auto;
+        }
+
+        /* Footer */
+        .footer {
+            background-color: #f8f9fa;
+            border-top: 1px solid #a2a9b1;
+            padding: 20px;
+            font-size: 13px;
+            color: #202122;
+        }
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+        }
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .footer-links a {
+            color: #0645ad;
+            text-decoration: none;
+            margin-right: 15px;
+        }
+        .footer-info {
+            text-align: right;
+        }
+
+        /* Utility classes */
+        .hidden { display: none; }
+        .mb-4 { margin-bottom: 1rem; }
+        .text-sm { font-size: 0.875rem; }
+        .font-semibold { font-weight: 600; }
+        .hover\:underline:hover { text-decoration: underline; }
+
+        /* Dark mode */
+        .dark-theme {
+            background-color: #202124;
+            color: #e8eaed;
+        }
+        .dark-theme .header,
+        .dark-theme .sidebar-left,
+        .dark-theme .sidebar-right,
+        .dark-theme .footer {
+            background-color: #35363a;
+            border-color: #5f6368;
+        }
+        .dark-theme .search-bar input {
+            background-color: #202124;
+            color: #e8eaed;
+            border-color: #5f6368;
+        }
+        .dark-theme .right-links a,
+        .dark-theme .footer-links a {
+            color: #8ab4f8;
+        }
+        .dark-theme .footer {
+            color: #bdc1c6;
+        }
+        .dark-theme .main-article,
+        .dark-theme .toc {
+            color: #e8eaed;
+        }
+        .dark-theme .burger-menu,
+        .dark-theme .logo,
+        .dark-theme .three-dots {
+            color: #ffffff;
+        }
+        .dark-theme .sidebar-left h3,
+        .dark-theme .sidebar-right h3 {
+            color: #ffffff;
+        }
+        .dark-theme .toc-toggle {
+            color: #ffffff;
+            background-color: #4a4a4a;
+        }
+        .dark-theme .toc a {
+            color: #8ab4f8;
+        }
+        .dark-theme .appearance-panel {
+            background-color: #35363a;
+            color: #e8eaed;
+        }
+
+        /* Responsive design */
+        @media (max-width: 1024px) {
+            .main-content {
+                flex-direction: column;
+            }
+            .sidebar-left, .sidebar-right {
+                width: 100%;
+                height: auto;
+                position: static;
+                border: none;
+            }
+        }
+
+        /* Additional styles */
+        .expandable-menu, .options-dropdown {
+            display: none;
+            position: absolute;
+            background-color: white;
+            border: 1px solid #a2a9b1;
+            padding: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            z-index: 1000;
+        }
+        .expandable-menu {
+            left: 10px;
+            top: 50px;
+        }
+        .options-dropdown {
+            right: 10px;
+            top: 50px;
+        }
+        .show {
+            display: block;
+        }
+
+        /* Table of Contents styles */
+        .toc {
+            background-color: #f8f9fa;
+            border: 1px solid #a2a9b1;
+            padding: 10px;
+            margin-bottom: 20px;
+        }
+        .toc-title {
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .toc ul {
+            list-style-type: none;
+            padding-left: 20px;
+        }
+        .toc li {
+            margin-bottom: 5px;
+        }
+        .toc a {
+            text-decoration: none;
+            color: #0645ad;
+        }
+        .toc a:hover {
+            text-decoration: underline;
+        }
+
+        /* Appearance panel styles */
+        .appearance-panel {
+            background-color: #f8f9fa;
+            border: 1px solid #a2a9b1;
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+        .appearance-panel h3 {
+            margin-top: 0;
+            margin-bottom: 10px;
+        }
+        .setting-group {
+            margin-bottom: 15px;
+        }
+        .setting-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        /* Table of Contents toggle */
+        .toc-toggle {
+            cursor: pointer;
+            color: #020202;
+            text-decoration: underline;
+            font-size: 12px;
+            background-color: #cfcfcf;
+            font-weight: 100;
+            padding: 4px 5px;
+            border-radius: 2px;
+        }
+        .toc-icon {
+            display: none;
+            position: fixed;
+            left: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: #f8f9fa;
+            border: 1px solid #a2a9b1;
+            padding: 10px;
+            cursor: pointer;
+            z-index: 1000;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="burger-menu">☰</div>
+        <div class="logo"><a href="/">CIC</a></div>
+        <div class="search-bar">
+            <input type="text" id="main-search" placeholder="Search CIC">
+            <button id="search-button">Search</button>
+        </div>
+        <div class="right-links">
+            <a href="#">Donate</a>
+            <a href="#">Create account</a>
+            <a href="#">Login</a>
+        </div>
+        <div class="three-dots">⋮</div>
+    </header>
+    
+    <div class="expandable-menu">
+        <p>Menu Item 1</p>
+        <p>Menu Item 2</p>
+        <p>Menu Item 3</p>
+    </div>
+
+    <div class="options-dropdown">
+        <p>Option 1</p>
+        <p>Option 2</p>
+        <p>Option 3</p>
+    </div>
+
+    <div class="main-content">
+        <aside class="sidebar-left" id="sidebar-left">
+            <nav>
+                <h3 class="font-semibold mb-4">Contents <span class="toc-toggle" id="toc-toggle">[hide]</span></h3>
+                <div id="table-of-contents" class="toc"></div>
+            </nav>
+        </aside>
+
+        <div class="toc-icon" id="toc-icon">☰</div>
+
+        <main class="main-article">
+            <h1>2024 Moldovan European Union Membership Referendum</h1>
+            <hr>
+            <section id="introduction">
+                <h2>Introduction</h2>
+                <p>The 2024 Moldovan European Union Membership Referendum was a historic vote held on March 5, 2024, to determine whether Moldova should join the European Union (EU)<sup>[1]</sup>. This referendum marked a crucial moment in Moldova's political landscape, reflecting the country's aspirations for closer ties with Western Europe and its complex relationship with neighboring countries and geopolitical influences.</p>
+                <p>The referendum asked Moldovan citizens: "Do you support Moldova becoming a member of the European Union?" The outcome of this vote was set to have far-reaching implications for Moldova's future, potentially reshaping its economic, political, and social trajectory<sup>[2]</sup>.</p>
+            </section>
+
+            <section id="background">
+                <h2>Background</h2>
+                <p>Moldova's journey towards European integration has been long and complex, shaped by its historical ties, geographical position, and evolving political landscape. Since gaining independence in 1991 following the dissolution of the Soviet Union, Moldova has gradually oriented itself towards the West, while maintaining significant economic and cultural links with Russia and other former Soviet republics<sup>[3]</sup>.</p>
+                <p>Key milestones in Moldova's relationship with the EU include:</p>
+                <ul>
+                    <li>1994: Moldova joins the Partnership and Cooperation Agreement with the EU<sup>[4]</sup></li>
+                    <li>2005: EU-Moldova Action Plan is adopted as part of the European Neighbourhood Policy<sup>[5]</sup></li>
+                    <li>2009: Moldova joins the Eastern Partnership<sup>[6]</sup></li>
+                    <li>2014: Moldova signs the Association Agreement and Deep and Comprehensive Free Trade Area (DCFTA) with the EU<sup>[7]</sup></li>
+                    <li>2022: Moldova is granted EU candidate status<sup>[8]</sup></li>
+                </ul>
+            </section>
+
+            <section id="results">
+                <h2>Results</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Choice</th>
+                            <th>Votes</th>
+                            <th>%</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>For</td>
+                            <td>1,498,289</td>
+                            <td>63.9%</td>
+                        </tr>
+                        <tr>
+                            <td>Against</td>
+                            <td>847,389</td>
+                            <td>36.1%</td>
+                        </tr>
+                        <tr>
+                            <td>Valid votes</td>
+                            <td>2,345,678</td>
+                            <td>99.5%</td>
+                        </tr>
+                        <tr>
+                            <td>Invalid or blank votes</td>
+                            <td>12,345</td>
+                            <td>0.5%</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Total votes</strong></td>
+                            <td><strong>2,358,023</strong></td>
+                            <td><strong>100.00%</strong></td>
+                        </tr>
+                        <tr>
+                            <td>Registered voters/turnout</td>
+                            <td>3,315,079</td>
+                            <td>71.1%</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p class="text-sm">Source: Central Election Commission of  Moldova<sup>[9]</sup></p>
+            </section>
+
+            <section id="regional-map">
+                <h2>Regional Results Map</h2>
+                <img src="/placeholder.svg?height=400&amp;width=600" alt="Regional Results Map" style="width: 100%; max-width: 600px; margin: 0 auto; display: block;">
+                <p class="text-sm" style="text-align: center;">Regional breakdown of referendum results<sup>[10]</sup></p>
+            </section>
+
+            <section id="aftermath">
+                <h2>Aftermath</h2>
+                <p>The referendum results showed a clear majority in favor of EU membership, with 63.9% voting "For" and 36.1% voting "Against". The turnout was 71.1%, which was considered high and added legitimacy to the outcome<sup>[11]</sup>.</p>
+                <p>Following the referendum:</p>
+                <ul>
+                    <li>The Moldovan government formally applied for EU membership on March 10, 2024<sup>[12]</sup>.</li>
+                    <li>The European Commission welcomed the results and promised to expedite the accession process<sup>[13]</sup>.</li>
+                    
+                    <li>Russia expressed concerns over the referendum's outcome, citing potential impacts on regional stability<sup>[14]</sup>.</li>
+                    <li>The Moldovan leu strengthened against major currencies in the days following the referendum<sup>[15]</sup>.</li>
+                </ul>
+                <p>The referendum marked a significant step in Moldova's European integration process, but experts noted that the actual accession to the EU would likely take several years and require substantial reforms in various sectors<sup>[16]</sup>.</p>
+            </section>
+
+            <section id="references">
+                <h2>References</h2>
+                <ol>
+                    <li>BBC News, 'Moldova holds historic EU membership referendum', March 5, 2024.</li>
+                    <li>European Commission, 'Moldova Referendum: Statement by President von der Leyen', March 6, 2024.</li>
+                    <li>King, C., 'The Moldovans: Romania, Russia, and the Politics of Culture', Hoover Institution Press, 2000.</li>
+                    <li>European External Action Service, 'EU-Moldova relations, factsheet', 2023.</li>
+                    <li>European Neighbourhood Policy And Enlargement Negotiations, 'Moldova', accessed 2024.</li>
+                    <li>Eastern Partnership, 'Republic of Moldova', accessed 2024.</li>
+                    <li>EU-Moldova Association Agreement, Official Journal of the European Union, 2014.</li>
+                    <li>European Council, 'European Council conclusions on Ukraine, the Republic of Moldova and Georgia', 23 June 2022.</li>
+                    <li>Central Election Commission of Moldova, 'Final Results of the 2024 EU Membership Referendum', March 7, 2024.</li>
+                    <li>Moldova.org, 'Interactive Map: EU Referendum Results by Region', March 6, 2024.</li>
+                    <li>Euronews, 'Moldova votes overwhelmingly to join EU in historic referendum', March 6, 2024.</li>
+                    <li>Government of the Republic of Moldova, 'Prime Minister submits Moldova's application for EU membership', March 10, 2024.</li>
+                    <li>European Commission, 'Press release: Commission welcomes Moldova's EU membership application', March 11, 2024.</li>
+                    <li>TASS Russian News Agency, 'Moscow expresses concern over Moldova referendum outcome', March 7, 2024.</li>
+                    <li>Reuters, 'Moldovan currency strengthens following pro-EU referendum', March 8, 2024.</li>
+                    <li>Foreign Policy, 'Moldova's Long Road to EU Membership Has Just Begun', March 15, 2024.</li>
+                </ol>
+            </section>
+
+            <section id="external-links">
+                <h2>External Links</h2>
+                <ul>
+                    <li><a href="#" class="text-blue-600 hover:underline">Official Referendum Website</a></li>
+                    <li><a href="#" class="text-blue-600 hover:underline">European Commission - Moldova</a></li>
+                    <li><a href="#" class="text-blue-600 hover:underline">Government of Moldova - EU Integration</a></li>
+                </ul>
+            </section>
+        </main>
+
+        <aside class="sidebar-right" id="sidebar-right">
+            <div class="appearance-panel">
+                <h3>Appearance</h3>
+                <div class="setting-group">
+                    <label>Text Size:</label>
+                    <label><input type="radio" name="text-size" value="small"> Small</label>
+                    <label><input type="radio" name="text-size" value="standard" checked> Standard</label>
+                    <label><input type="radio" name="text-size" value="large"> Large</label>
+                </div>
+                <div class="setting-group">
+                    <label>Page Width:</label>
+                    <label><input type="radio" name="page-width" value="standard" checked> Standard</label>
+                    <label><input type="radio" name="page-width" value="wide"> Wide</label>
+                </div>
+                <div class="setting-group">
+                    <label>Theme:</label>
+                    <label><input type="radio" name="theme" value="automatic"> Automatic</label>
+                    <label><input type="radio" name="theme" value="light" checked> Light</label>
+                    <label><input type="radio" name="theme" value="dark"> Dark</label>
+                </div>
+            </div>
+        </aside>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="#" class="hover:underline">Privacy policy</a>
+                <a href="#" class="hover:underline">About Critical Infrastructure Cybersecurity</a>
+                <a href="#" class="hover:underline">Disclaimers</a>
+                <a href="#" class="hover:underline">Contact Critical Infrastructure Cybersecurity</a>
+            </div>
+            <div class="footer-info">
+                <p>Text is available under the <a href="#" class="hover:underline">Creative Commons Attribution-ShareAlike License 3.0</a>; additional terms may apply.</p>
+                <p>&copy; 2024 Critical Infrastructure Cybersecurity. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const burgerMenu = document.querySelector('.burger-menu');
+            const expandableMenu = document.querySelector('.expandable-menu');
+            const threeDots = document.querySelector('.three-dots');
+            const optionsDropdown = document.querySelector('.options-dropdown');
+            const sidebarLeft = document.getElementById('sidebar-left');
+            const searchInput = document.getElementById('main-search');
+            const searchButton = document.getElementById('search-button');
+            const mainArticle = document.querySelector('.main-article');
+            const tableOfContents = document.getElementById('table-of-contents');
+            const tocToggle = document.getElementById('toc-toggle');
+            const tocIcon = document.getElementById('toc-icon');
+
+            // Toggle menus
+            burgerMenu.addEventListener('click', function() {
+                expandableMenu.classList.toggle('show');
+            });
+
+            threeDots.addEventListener('click', function() {
+                optionsDropdown.classList.toggle('show');
+            });
+
+            // Search functionality
+            searchButton.addEventListener('click', function(e) {
+                e.preventDefault();
+                console.log("Searching for:", searchInput.value);
+                // Implement actual search functionality here
+            });
+
+            // Generate table of contents
+            function generateTableOfContents() {
+                const headings = mainArticle.querySelectorAll('h2, h3, h4, h5, h6');
+                let toc = '<ul>';
+                let lastLevel = 2;
+                headings.forEach(heading => {
+                    const level = parseInt(heading.tagName.charAt(1));
+                    const text = heading.textContent;
+                    const id = heading.id || text.toLowerCase().replace(/\s+/g, '-');
+                    heading.id = id;
+
+                    if (level > lastLevel) {
+                        toc += '<ul>';
+                    } else if (level < lastLevel) {
+                        toc += '</ul>'.repeat(lastLevel - level);
+                    }
+
+                    toc += `<li><a href="#${id}">${text}</a></li>`;
+                    lastLevel = level;
+                });
+                toc += '</ul>';
+                tableOfContents.innerHTML = toc;
+            }
+
+            generateTableOfContents();
+
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+
+            // Appearance panel functionality
+            const textSizeInputs = document.querySelectorAll('input[name="text-size"]');
+            const pageWidthInputs = document.querySelectorAll('input[name="page-width"]');
+            const themeInputs = document.querySelectorAll('input[name="theme"]');
+
+            textSizeInputs.forEach(input => {
+                input.addEventListener('change', function() {
+                    const fontSize = this.value === 'small' ? '14px' : this.value === 'large' ? '20px' : '16px';
+                    mainArticle.style.fontSize = fontSize;
+                });
+            });
+
+            pageWidthInputs.forEach(input => {
+                input.addEventListener('change', function() {
+                    document.body.className = document.body.className.replace(/\bwidth-\S+/g, '');
+                    document.body.classList.add(`width-${this.value}`);
+                });
+            });
+
+            function setTheme(theme) {
+                if (theme === 'dark' || (theme === 'automatic' && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                    document.body.classList.add('dark-theme');
+                } else {
+                    document.body.classList.remove('dark-theme');
+                }
+            }
+
+            themeInputs.forEach(input => {
+                input.addEventListener('change', function() {
+                    setTheme(this.value);
+                });
+            });
+
+            // Set initial theme
+            setTheme(document.querySelector('input[name="theme"]:checked').value);
+
+            // Listen for system theme changes
+            window.matchMedia('(prefers-color-scheme: dark)').addListener(() => {
+                setTheme(document.querySelector('input[name="theme"]:checked').value);
+            });
+
+            // Table of Contents toggle functionality
+            let tocHidden = false;
+
+            function toggleTOC() {
+                if (tocHidden) {
+                    sidebarLeft.style.display = 'block';
+                    tocIcon.style.display = 'none';
+                    tocToggle.textContent = '[hide]';
+                    //mainArticle.style.marginLeft = '250px';
+                } else {
+                    sidebarLeft.style.display = 'none';
+                    tocIcon.style.display = 'block';
+                    tocToggle.textContent = '[show]';
+                    mainArticle.style.marginLeft = '0';
+                }
+                tocHidden = !tocHidden;
+            }
+
+            tocToggle.addEventListener('click', toggleTOC);
+            tocIcon.addEventListener('click', toggleTOC);
+
+            // Responsive design
+            function handleResize() {
+                if (window.innerWidth <= 1024) {
+                    sidebarLeft.classList.add('hidden');
+                    tocIcon.style.display = 'none';
+                } else {
+                    sidebarLeft.classList.remove('hidden');
+                    if (tocHidden) {
+                        tocIcon.style.display = 'block';
+                    }
+                }
+            }
+
+            window.addEventListener('resize', handleResize);
+            handleResize(); // Initial call
+        });
+    </script>
+</body>
+</html>

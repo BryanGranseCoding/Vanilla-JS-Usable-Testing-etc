@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta property="og:image" content="picsum.photos/1920/1080?1">
+    <link rel="shortcut icon" href="https://picsum.photos/32/32?1" type="image/x-icon">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CIC Search Results</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Lato', 'Helvetica', 'Arial', sans-serif;
+            line-height: 1.6;
+            font-size: 16px;
+        }
+        .header {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            border-bottom: 1px solid #a2a9b1;
+            position: relative;
+            padding-left: 2.75rem;
+            padding-right: 2.75rem;
+        }
+        .burger-menu {
+            font-size: 20px;
+            cursor: pointer;
+            margin-right: 15px;
+        }
+        .logo {
+            font-weight: bold;
+            font-size: 24px;
+            margin-right: 20px;
+        }
+        .search-bar {
+            display: flex;
+            align-items: center;
+            width: 300px;
+            margin-right: auto;
+        }
+        .search-bar input {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #a2a9b1;
+            border-radius: 2px 0 0 2px;
+        }
+        .search-bar button {
+            padding: 8px 12px;
+            background-color: #000;
+            color: white;
+            border: none;
+            border-radius: 0 2px 2px 0;
+            cursor: pointer;
+        }
+        .right-links {
+            display: flex;
+            align-items: center;
+        }
+        .right-links a {
+            margin-left: 15px;
+            text-decoration: none;
+            color: #202122;
+        }
+        .three-dots {
+            font-size: 20px;
+            cursor: pointer;
+            margin-left: 15px;
+        }
+        .main-content {
+            display: flex;
+            padding: 20px;
+            /*max-width: 1200px;*/
+            margin: 0 auto;
+            padding-left: 2.75rem;
+            padding-right: 2.75rem;
+        }
+        .search-results-container {
+            flex-grow: 1;
+            margin-right: 20px;
+            border-right: 1px solid #e5e7eb;
+            padding: 0.6rem 1rem;
+        }
+        .search-results-title {
+            font-size: 28px;
+            border-bottom: 1px solid #a2a9b1;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+        .search-results-bar {
+            margin-bottom: 20px;
+            width: 50%;
+        }
+        .search-results-bar input {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #a2a9b1;
+            border-radius: 2px;
+        }
+        .search-results {
+            list-style-type: none;
+            padding: 0;
+        }
+        .search-result {
+            display: flex;
+            margin-bottom: 20px;
+        }
+        .search-result-image {
+            width: 120px;
+            height: 120px;
+            object-fit: cover;
+            border-radius: 4px;
+            margin-right: 20px;
+        }
+        .search-result-content {
+            flex-grow: 1;
+        }
+        .search-result-title {
+            margin: 0;
+            font-size: 18px;
+        }
+        .search-result-title a {
+            color: #0645ad;
+            text-decoration: none;
+        }
+        .search-result-description {
+            margin: 5px 0;
+            color: #202122;
+        }
+        .search-result-meta {
+            font-size: 12px;
+            color: #72777d;
+        }
+        .pagination {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        .pagination a {
+            margin: 0 5px;
+            padding: 5px 10px;
+            text-decoration: none;
+            color: #0645ad;
+            border: 1px solid #a2a9b1;
+            border-radius: 2px;
+        }
+        .sidebar {
+            width: 250px;
+            position: sticky;
+            top: 20px;
+            align-self: flex-start;
+        }
+        .appearance-panel {
+            background-color: #f8f9fa;
+            border: 1px solid #a2a9b1;
+            border-radius: 2px;
+            padding: 15px;
+        }
+        .appearance-panel h3 {
+            margin-top: 0;
+        }
+        .setting-group {
+            margin-bottom: 15px;
+        }
+        .setting-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        .setting-group input[type="radio"] {
+            margin-right: 5px;
+        }
+        .expandable-menu, .options-dropdown {
+            display: none;
+            position: absolute;
+            background-color: white;
+            border: 1px solid #a2a9b1;
+            padding: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            z-index: 1000;
+        }
+        .expandable-menu {
+            left: 10px;
+            top: 50px;
+        }
+        .options-dropdown {
+            right: 10px;
+            top: 50px;
+        }
+        .show {
+            display: block;
+        }
+        .footer {
+            background-color: #f8f9fa;
+            border-top: 1px solid #a2a9b1;
+            padding: 20px;
+            font-size: 13px;
+            color: #202122;
+        }
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+        }
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .footer-links a {
+            color: #0645ad;
+            text-decoration: none;
+            margin-right: 15px;
+        }
+        .footer-info {
+            text-align: right;
+        }
+        @media (max-width: 768px) {
+            .main-content {
+                flex-direction: column;
+            }
+            .sidebar {
+                width: 100%;
+                position: static;
+                margin-top: 20px;
+            }
+            .footer-content {
+                flex-direction: column;
+            }
+            .footer-info {
+                text-align: left;
+                margin-top: 15px;
+            }
+        }
+        .dark-theme {
+            background-color: #202124;
+            color: #e8eaed;
+        }
+        .dark-theme .header,
+        .dark-theme .appearance-panel,
+        .dark-theme .footer {
+            background-color: #35363a;
+            border-color: #5f6368;
+        }
+        .dark-theme .search-bar input,
+        .dark-theme .search-results-bar input {
+            background-color: #202124;
+            color: #e8eaed;
+            border-color: #5f6368;
+        }
+        .dark-theme .right-links a,
+        .dark-theme .search-result-title a,
+        .dark-theme .footer-links a {
+            color: #8ab4f8;
+        }
+        .dark-theme .search-result-description,
+        .dark-theme .search-result-meta,
+        .dark-theme .footer {
+            color: #bdc1c6;
+        }
+        /*Pagination*/
+        .pagination {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        .pagination button {
+            margin: 0 5px;
+            padding: 5px 10px;
+            background-color: #f8f9fa;
+            border: 1px solid #a2a9b1;
+            border-radius: 2px;
+            cursor: pointer;
+        }
+        .pagination button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        .dark-theme .pagination button {
+            background-color: #35363a;
+            color: #e8eaed;
+            border-color: #5f6368;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="burger-menu">☰</div>
+        <div class="logo">CIC</div>
+        <div class="search-bar">
+            <input type="text" id="main-search" placeholder="Search CIC">
+            <button id="search-button">Search</button>
+        </div>
+        <div class="right-links">
+            <a href="#">Donate</a>
+            <a href="#">Create account</a>
+            <a href="#">Login</a>
+        </div>
+        <div class="three-dots">⋮</div>
+    </header>
+
+    <div class="expandable-menu">
+        <p>Menu Item 1</p>
+        <p>Menu Item 2</p>
+        <p>Menu Item 3</p>
+    </div>
+
+    <div class="options-dropdown">
+        <p>Option 1</p>
+        <p>Option 2</p>
+        <p>Option 3</p>
+    </div>
+
+    <main class="main-content">
+        <div class="search-results-container">
+            <h1 class="search-results-title">Search results</h1>
+            <div class="search-results-bar">
+                <input type="text" id="secondary-search" placeholder="Search CIC">
+            </div>
+            <ul class="search-results" id="search-results-list">
+                <!-- Search results will be dynamically inserted here -->
+            </ul>
+            <div class="pagination" id="pagination">
+                <!-- Pagination buttons will be dynamically inserted here -->
+            </div>
+        </div>
+        <aside class="sidebar">
+            <div class="appearance-panel">
+                <h3>Appearance</h3>
+                <div class="setting-group">
+                    <label>Text Size:</label>
+                    <label><input type="radio" name="text-size" value="small"> Small</label>
+                    <label><input type="radio" name="text-size" value="standard" checked> Standard</label>
+                    <label><input type="radio" name="text-size" value="large"> Large</label>
+                </div>
+                <div class="setting-group">
+                    <label>Page Width:</label>
+                    <label><input type="radio" name="page-width" value="standard" checked> Standard</label>
+                    <label><input type="radio" name="page-width" value="wide"> Wide</label>
+                </div>
+                <div class="setting-group">
+                    <label>Theme:</label>
+                    <label><input type="radio" name="theme" value="automatic"> Automatic</label>
+                    <label><input type="radio" name="theme" value="light" checked> Light</label>
+                    <label><input type="radio" name="theme" value="dark"> Dark</label>
+                </div>
+            </div>
+        </aside>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="#">Privacy policy</a>
+                <a href="#">About CIC</a>
+                <a href="#">Disclaimers</a>
+                <a href="#">Contact CIC</a>
+                <a href="#">Mobile view</a>
+                <a href="#">Developers</a>
+                <a href="#">Statistics</a>
+                <a href="#">Cookie statement</a>
+            </div>
+            <div class="footer-info">
+                <p>This page was last edited on 26 October 2024, at 04:46.</p>
+                <p>Text is available under the Creative Commons Attribution-ShareAlike License 3.0; additional terms may apply.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const burgerMenu = document.querySelector('.burger-menu');
+        const expandableMenu = document.querySelector('.expandable-menu');
+        const threeDots = document.querySelector('.three-dots');
+        const optionsDropdown = document.querySelector('.options-dropdown');
+        const mainSearch = document.getElementById('main-search');
+        const searchButton = document.getElementById('search-button');
+        const secondarySearch = document.getElementById('secondary-search');
+        const searchResultsList = document.getElementById('search-results-list');
+        const paginationElement = document.getElementById('pagination');
+
+        const RESULTS_PER_PAGE = 4;
+        let allResults = [];
+        let currentPage = 1;
+
+        async function performSearch(query) {
+            const searchQuery = query.toLowerCase();
+            mainSearch.value = searchQuery;
+            secondarySearch.value = searchQuery;
+            
+            try {
+                // Simulating fetching all HTML files in the /wiki directory
+                const filesToCheck = ['page1.html', 'page2.html', 'page3.html', 'page4.html', 'page5.html', 'page6.html', 'page7.html'];
+                allResults = [];
+                
+                for (const fileName of filesToCheck) {
+                    try {
+                        const fileResponse = await fetch(`/wiki/${fileName}`);
+                        if (!fileResponse.ok) continue;
+                        
+                        const fileContent = await fileResponse.text();
+                        const parser = new DOMParser();
+                        const doc = parser.parseFromString(fileContent, 'text/html');
+                        
+                        const title = doc.querySelector('title')?.textContent || 
+                                    doc.querySelector('meta[property="og:title"]')?.getAttribute('content') || 
+                                    fileName;
+                        
+                        const metaTitle = doc.querySelector('meta[name="title"]')?.getAttribute('content') || '';
+                        
+                        if (title.toLowerCase().includes(searchQuery) || metaTitle.toLowerCase().includes(searchQuery)) {
+                            const description = doc.querySelector('meta[name="description"]')?.getAttribute('content') || 
+                                              doc.querySelector('meta[property="og:description"]')?.getAttribute('content') || 
+                                              'No description available';
+                                              
+                            const image = doc.querySelector('meta[property="og:image"]')?.getAttribute('content') || 
+                                        '/placeholder.svg?height=120&width=120';
+                            
+                            allResults.push({ fileName, title, metaTitle, description, image });
+                        }
+                    } catch (fileError) {
+                        console.error(`Error processing file ${fileName}:`, fileError);
+                    }
+                }
+                
+                displayResults(1);
+            } catch (error) {
+                console.error('Error during search:', error);
+                searchResultsList.innerHTML = '<li>An error occurred during search.</li>';
+            }
+        }
+
+        function displayResults(page) {
+            currentPage = page;
+            const startIndex = (page - 1) * RESULTS_PER_PAGE;
+            const endIndex = startIndex + RESULTS_PER_PAGE;
+            const resultsToShow = allResults.slice(startIndex, endIndex);
+
+            searchResultsList.innerHTML = '';
+            
+            if (resultsToShow.length > 0) {
+                for (const result of resultsToShow) {
+                    const listItem = document.createElement('li');
+                    listItem.className = 'search-result';
+                    listItem.innerHTML = `
+                        <img src="${result.image}" alt="${result.title}" class="search-result-image" onerror="this.src='/placeholder.svg?height=120&width=120'">
+                        <div class="search-result-content">
+                            <h3 class="search-result-title">
+                                <a href="/wiki/${result.fileName}">${result.title}</a>
+                            </h3>
+                            <p class="search-result-description">${result.description}</p>
+                            <p class="search-result-meta">Found in /wiki/${result.fileName}</p>
+                        </div>
+                    `;
+                    searchResultsList.appendChild(listItem);
+                }
+            } else {
+                searchResultsList.innerHTML = '<li>No results found.</li>';
+            }
+
+            updatePagination();
+        }
+
+        function updatePagination() {
+            if (!paginationElement) {
+                console.error('Pagination element not found');
+                return;
+            }
+
+            const totalPages = Math.ceil(allResults.length / RESULTS_PER_PAGE);
+            paginationElement.innerHTML = '';
+
+            if (totalPages > 1) {
+                const prevButton = document.createElement('button');
+                prevButton.textContent = 'Previous';
+                prevButton.disabled = currentPage === 1;
+                prevButton.addEventListener('click', () => displayResults(currentPage - 1));
+                paginationElement.appendChild(prevButton);
+
+                for (let i = 1; i <= totalPages; i++) {
+                    const pageButton = document.createElement('button');
+                    pageButton.textContent = i;
+                    pageButton.disabled = i === currentPage;
+                    pageButton.addEventListener('click', () => displayResults(i));
+                    paginationElement.appendChild(pageButton);
+                }
+
+                const nextButton = document.createElement('button');
+                nextButton.textContent = 'Next';
+                nextButton.disabled = currentPage === totalPages;
+                nextButton.addEventListener('click', () => displayResults(currentPage + 1));
+                paginationElement.appendChild(nextButton);
+            }
+        }
+
+        function getUrlParameter(name) {
+            name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+            var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+            var results = regex.exec(location.search);
+            return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+        }
+
+        // Event listeners for search
+        searchButton.addEventListener('click', () => performSearch(mainSearch.value));
+        mainSearch.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') performSearch(mainSearch.value);
+        });
+        secondarySearch.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') performSearch(secondarySearch.value);
+        });
+
+        // Perform search on page load if query parameter is present
+        document.addEventListener('DOMContentLoaded', () => {
+            const queryParam = getUrlParameter('query');
+            if (queryParam) {
+                performSearch(queryParam);
+            }
+        });  
+    </script>
+</body>
+</html>

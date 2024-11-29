@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2024 Moldovan European Union Membership Referendum</title>
+    <style>
+        /* Base styles */
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Lato', 'Helvetica', 'Arial', sans-serif;
+            line-height: 1.6;
+            font-size: 16px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            font-family: Georgia, serif;
+        }
+        h1 { 
+            font-size: 29px;
+            font-family: Georgia, serif;
+        }
+        h2 { font-size: 1.5rem; }
+
+        /* Layout */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+        .flex { display: flex; }
+        .flex-col { flex-direction: column; }
+        .flex-1 { flex: 1; }
+        .items-center { align-items: center; }
+        .justify-between { justify-content: space-between; }
+        .space-x-4 > * + * { margin-left: 1rem; }
+
+        /* Header */
+        .header {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            border-bottom: 1px solid #a2a9b1;
+            position: relative;
+            background-color: white;
+            padding-left: 2.75rem;
+            padding-right: 2.75rem;
+        }
+        .burger-menu {
+            font-size: 20px;
+            cursor: pointer;
+            margin-right: 15px;
+        }
+        .logo {
+            font-weight: bold;
+            font-size: 24px;
+            margin-right: 20px;
+        }
+        .search-bar {
+            display: flex;
+            align-items: center;
+            width: 300px;
+            margin-right: auto;
+        }
+        .search-bar input {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #a2a9b1;
+            border-radius: 2px 0 0 2px;
+        }
+        .search-bar button {
+            padding: 8px 12px;
+            background-color: #000;
+            color: white;
+            border: none;
+            border-radius: 0 2px 2px 0;
+            cursor: pointer;
+        }
+        .right-links {
+            display: flex;
+            align-items: center;
+        }
+        .right-links a {
+            margin-left: 15px;
+            text-decoration: none;
+            color: #202122;
+        }
+        .three-dots {
+            font-size: 20px;
+            cursor: pointer;
+            margin-left: 15px;
+        }
+
+        /* Main content */
+        .main-content {
+            display: flex;
+            padding: 20px;
+            /*max-width: 1200px;*/
+            margin: 0 auto;
+            flex: 1;
+        }
+        .sidebar-left {
+            width: 250px;
+            background-color: white;
+            border-right: 1px solid #e5e7eb;
+            padding: 1rem;
+            height: calc(100vh - 60px);
+            position: sticky;
+            top: 0;
+            overflow-y: auto;
+        }
+        .main-article {
+            flex: 1;
+            padding: 0.6rem 1rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .sidebar-right {
+            width: 250px;
+            background-color: white;
+            border-left: 1px solid #e5e7eb;
+            padding: 1rem;
+            height: calc(100vh - 60px);
+            position: sticky;
+            top: 0;
+            overflow-y: auto;
+        }
+
+        /* Footer */
+        .footer {
+            background-color: #f8f9fa;
+            border-top: 1px solid #a2a9b1;
+            padding: 20px;
+            font-size: 13px;
+            color: #202122;
+        }
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+        }
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .footer-links a {
+            color: #0645ad;
+            text-decoration: none;
+            margin-right: 15px;
+        }
+        .footer-info {
+            text-align: right;
+        }
+
+        /* Utility classes */
+        .hidden { display: none; }
+        .mb-4 { margin-bottom: 1rem; }
+        .text-sm { font-size: 0.875rem; }
+        .font-semibold { font-weight: 600; }
+        .hover\:underline:hover { text-decoration: underline; }
+
+        /* Dark mode */
+        .dark-theme {
+            background-color: #202124;
+            color: #2b2b2b;
+        }
+        .dark-theme .header,
+        .dark-theme .sidebar-left,
+        .dark-theme .sidebar-right,
+        .dark-theme .footer {
+            background-color: #35363a;
+            border-color: #5f6368;
+        }
+        .dark-theme .search-bar input {
+            background-color: #202124;
+            color: #e8eaed;
+            border-color: #5f6368;
+        }
+        .dark-theme .right-links a,
+        .dark-theme .footer-links a {
+            color: #8ab4f8;
+        }
+        .dark-theme .footer {
+            color: #bdc1c6;
+        }
+        .dark-theme .main-article,
+        .dark-theme .toc {
+            color: #e8eaed;
+        }
+
+        /* Responsive design */
+        @media (max-width: 1024px) {
+            .main-content {
+                flex-direction: column;
+            }
+            .sidebar-left, .sidebar-right {
+                width: 100%;
+                height: auto;
+                position: static;
+                border: none;
+            }
+        }
+
+        /* Additional styles */
+        .expandable-menu, .options-dropdown {
+            display: none;
+            position: absolute;
+            background-color: white;
+            border: 1px solid #a2a9b1;
+            padding: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            z-index: 1000;
+        }
+        .expandable-menu {
+            left: 10px;
+            top: 50px;
+        }
+        .options-dropdown {
+            right: 10px;
+            top: 50px;
+        }
+        .show {
+            display: block;
+        }
+
+        /* Table of Contents styles */
+        .toc {
+            background-color: #f8f9fa;
+            border: 1px solid #a2a9b1;
+            padding: 10px;
+            margin-bottom: 20px;
+        }
+        .toc-title {
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .toc ul {
+            list-style-type: none;
+            padding-left: 20px;
+        }
+        .toc li {
+            margin-bottom: 5px;
+        }
+        .toc a {
+            text-decoration: none;
+            color: #0645ad;
+        }
+        .toc a:hover {
+            text-decoration: underline;
+        }
+
+        /* Appearance panel styles */
+        .appearance-panel {
+            background-color: #f8f9fa;
+            border: 1px solid #a2a9b1;
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+        .appearance-panel h3 {
+            margin-top: 0;
+            margin-bottom: 10px;
+        }
+        .setting-group {
+            margin-bottom: 15px;
+        }
+        .setting-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        /* Table of Contents toggle */
+        .toc-toggle {
+            cursor: pointer;
+            color: #020202;
+            text-decoration: underline;
+            font-size: 12px;
+            background-color: #cfcfcf;
+            font-weight: 100;
+            padding: 4px 5px;
+            border-radius: 2px;
+        }
+        .toc-icon {
+            display: none;
+            position: fixed;
+            left: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: #f8f9fa;
+            border: 1px solid #a2a9b1;
+            padding: 10px;
+            cursor: pointer;
+            z-index: 1000;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="burger-menu">☰</div>
+        <div class="logo">CIC</div>
+        <div class="search-bar">
+            <input type="text" id="main-search" placeholder="Search CIC">
+            <button id="search-button">Search</button>
+        </div>
+        <div class="right-links">
+            <a href="#">Donate</a>
+            <a href="#">Create account</a>
+            <a href="#">Login</a>
+        </div>
+        <div class="three-dots">⋮</div>
+    </header>
+    
+    <div class="expandable-menu">
+        <p>Menu Item 1</p>
+        <p>Menu Item 2</p>
+        <p>Menu Item 3</p>
+    </div>
+
+    <div class="options-dropdown">
+        <p>Option 1</p>
+        <p>Option 2</p>
+        <p>Option 3</p>
+    </div>
+
+    <div class="main-content">
+        <aside class="sidebar-left" id="sidebar-left">
+            <nav>
+                <h3 class="font-semibold mb-4">Contents <span class="toc-toggle" id="toc-toggle">[hide]</span></h3>
+                <div id="table-of-contents" class="toc"></div>
+            </nav>
+        </aside>
+
+        <div class="toc-icon" id="toc-icon">☰</div>
+
+        <main class="main-article">
+            <h1>Comprehensive Guide to Strengthening Cybersecurity for Your Business in 2024</h1>
+
+            <h2 id="introduction">Introduction</h2>
+            <p>In today's digital age, cybersecurity has become a top priority for businesses of all sizes. With cyber threats evolving rapidly, organizations must stay vigilant and implement robust strategies to protect sensitive data and ensure operational continuity. This guide outlines essential steps and best practices for strengthening cybersecurity in 2024.</p>
+
+            <h2 id="key-cybersecurity-challenges">Key Cybersecurity Challenges in 2024</h2>
+            <ol>
+                <li><strong>Sophisticated Cyber Attacks</strong> – Cybercriminals are using more advanced techniques, making it critical for companies to regularly update and reinforce their defenses.</li>
+                <li><strong>Increased Data Privacy Regulations</strong> – With new privacy laws, businesses must comply or face significant penalties, stressing the need for secure data management.</li>
+                <li><strong>Remote Work Vulnerabilities</strong> – As hybrid work models remain common, securing remote networks and devices is crucial to safeguarding sensitive information.</li>
+            </ol>
+
+            <h2 id="best-practices">10 Best Practices for Enhancing Cybersecurity</h2>
+            <ol>
+                <li>
+                    <h3>Implement Multi-Factor Authentication (MFA)</h3>
+                    <p>Adding an extra layer of security through MFA ensures only authorized users can access sensitive systems, even if passwords are compromised.</p>
+                </li>
+                <li>
+                    <h3>Regularly Update Software and Systems</h3>
+                    <p>Keeping software up-to-date helps close vulnerabilities that hackers could exploit.</p>
+                </li>
+                <li>
+                    <h3>Employee Training and Awareness</h3>
+                    <p>Educating employees on phishing scams and security protocols can significantly reduce the risk of human error.</p>
+                </li>
+                <li>
+                    <h3>Use Firewalls and Intrusion Detection Systems (IDS)</h3>
+                    <p>These tools help monitor and block unauthorized access to company networks.</p>
+                </li>
+                <li>
+                    <h3>Encrypt Sensitive Data</h3>
+                    <p>Encryption protects data from being readable to unauthorized users, ensuring that information remains safe even if intercepted.</p>
+                </li>
+                <li>
+                    <h3>Backup Data Regularly</h3>
+                    <p>Regular backups ensure that data can be recovered in case of a ransomware attack or other disruptive incident.</p>
+                </li>
+                <li>
+                    <h3>Conduct Routine Security Audits</h3>
+                    <p>Regular audits help identify and address vulnerabilities, keeping cybersecurity measures effective and up to date.</p>
+                </li>
+                <li>
+                    <h3>Limit Access Control</h3>
+                    <p>Restrict access to sensitive data based on job roles, reducing the risk of internal breaches.</p>
+                </li>
+                <li>
+                    <h3>Establish an Incident Response Plan</h3>
+                    <p>A well-defined response plan ensures quick and organized reactions to cyber incidents, minimizing damage and recovery time.</p>
+                </li>
+                <li>
+                    <h3>Invest in Cybersecurity Software</h3>
+                    <p>Comprehensive cybersecurity solutions provide a range of defenses, from malware protection to network monitoring.</p>
+                </li>
+            </ol>
+
+            <h2 id="importance">Importance of Cybersecurity for Businesses</h2>
+            <p>Maintaining robust cybersecurity is essential for protecting company assets, maintaining customer trust, and ensuring compliance with regulatory requirements. A strong cybersecurity framework reduces the risk of data breaches, financial losses, and reputational damage, empowering businesses to focus on growth with peace of mind.</p>
+
+            <h2 id="conclusion">Conclusion</h2>
+            <p>As cyber threats continue to evolve, investing in comprehensive cybersecurity strategies is non-negotiable for modern businesses. By implementing these best practices and staying informed about emerging threats, organizations can effectively fortify their digital defenses in 2024 and beyond.</p>
+        </main>
+
+        <aside class="sidebar-right" id="sidebar-right">
+            <div  class="appearance-panel">
+                <h3>Appearance</h3>
+                <div class="setting-group">
+                    <label>Text Size:</label>
+                    <label><input type="radio" name="text-size" value="small"> Small</label>
+                    <label><input type="radio" name="text-size" value="standard" checked> Standard</label>
+                    <label><input type="radio" name="text-size" value="large"> Large</label>
+                </div>
+                <div class="setting-group">
+                    <label>Page Width:</label>
+                    <label><input type="radio" name="page-width" value="standard" checked> Standard</label>
+                    <label><input type="radio" name="page-width" value="wide"> Wide</label>
+                </div>
+                <div class="setting-group">
+                    <label>Theme:</label>
+                    <label><input type="radio" name="theme" value="automatic"> Automatic</label>
+                    <label><input type="radio" name="theme" value="light" checked> Light</label>
+                    <label><input type="radio" name="theme" value="dark"> Dark</label>
+                </div>
+            </div>
+        </aside>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="#" class="hover:underline">Privacy policy</a>
+                <a href="#" class="hover:underline">About Critical Infrastructure Cybersecurity</a>
+                <a href="#" class="hover:underline">Disclaimers</a>
+                <a href="#" class="hover:underline">Contact Critical Infrastructure Cybersecurity</a>
+            </div>
+            <div class="footer-info">
+                <p>Text is available under the <a href="#" class="hover:underline">Creative Commons Attribution-ShareAlike License 3.0</a>; additional terms may apply.</p>
+                <p>&copy; 2024 Critical Infrastructure Cybersecurity. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const burgerMenu = document.querySelector('.burger-menu');
+            const expandableMenu = document.querySelector('.expandable-menu');
+            const threeDots = document.querySelector('.three-dots');
+            const optionsDropdown = document.querySelector('.options-dropdown');
+            const sidebarLeft = document.getElementById('sidebar-left');
+            const searchInput = document.getElementById('main-search');
+            const searchButton = document.getElementById('search-button');
+            const mainArticle = document.querySelector('.main-article');
+            const tableOfContents = document.getElementById('table-of-contents');
+            const tocToggle = document.getElementById('toc-toggle');
+            const tocIcon = document.getElementById('toc-icon');
+
+            // Toggle menus
+            burgerMenu.addEventListener('click', function() {
+                expandableMenu.classList.toggle('show');
+            });
+
+            threeDots.addEventListener('click', function() {
+                optionsDropdown.classList.toggle('show');
+            });
+
+            // Search functionality
+            searchButton.addEventListener('click', function(e) {
+                e.preventDefault();
+                console.log("Searching for:", searchInput.value);
+                // Implement actual search functionality here
+            });
+
+            // Generate table of contents
+            function generateTableOfContents() {
+                const headings = mainArticle.querySelectorAll('h2, h3, h4, h5, h6');
+                let toc = '<ul>';
+                let lastLevel = 2;
+                headings.forEach(heading => {
+                    const level = parseInt(heading.tagName.charAt(1));
+                    const text = heading.textContent;
+                    const id = heading.id || text.toLowerCase().replace(/\s+/g, '-');
+                    heading.id = id;
+
+                    if (level > lastLevel) {
+                        toc += '<ul>';
+                    } else if (level < lastLevel) {
+                        toc += '</ul>'.repeat(lastLevel - level);
+                    }
+
+                    toc += `<li><a href="#${id}">${text}</a></li>`;
+                    lastLevel = level;
+                });
+                toc += '</ul>';
+                tableOfContents.innerHTML = toc;
+            }
+
+            generateTableOfContents();
+
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+
+            // Appearance panel functionality
+            const textSizeInputs = document.querySelectorAll('input[name="text-size"]');
+            const pageWidthInputs = document.querySelectorAll('input[name="page-width"]');
+            const themeInputs = document.querySelectorAll('input[name="theme"]');
+
+            textSizeInputs.forEach(input => {
+                input.addEventListener('change', function() {
+                    const fontSize = this.value === 'small' ? '14px' : this.value === 'large' ? '20px' : '16px';
+                    mainArticle.style.fontSize = fontSize;
+                });
+            });
+
+            pageWidthInputs.forEach(input => {
+                input.addEventListener('change', function() {
+                    document.body.className = document.body.className.replace(/\bwidth-\S+/g, '');
+                    document.body.classList.add(`width-${this.value}`);
+                });
+            });
+
+            function setTheme(theme) {
+                if (theme === 'dark' || (theme === 'automatic' && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                    document.body.classList.add('dark-theme');
+                } else {
+                    document.body.classList.remove('dark-theme');
+                }
+            }
+
+            themeInputs.forEach(input => {
+                input.addEventListener('change', function() {
+                    setTheme(this.value);
+                });
+            });
+
+            // Set initial theme
+            setTheme(document.querySelector('input[name="theme"]:checked').value);
+
+            // Listen for system theme changes
+            window.matchMedia('(prefers-color-scheme: dark)').addListener(() => {
+                setTheme(document.querySelector('input[name="theme"]:checked').value);
+            });
+
+            // Table of Contents toggle functionality
+            let tocHidden = false;
+
+            function toggleTOC() {
+                if (tocHidden) {
+                    sidebarLeft.style.display = 'block';
+                    tocIcon.style.display = 'none';
+                    tocToggle.textContent = '[hide]';
+                    //mainArticle.style.marginLeft = '250px';
+                } else {
+                    sidebarLeft.style.display = 'none';
+                    tocIcon.style.display = 'block';
+                    tocToggle.textContent = '[show]';
+                    mainArticle.style.marginLeft = '0';
+                }
+                tocHidden = !tocHidden;
+            }
+
+            tocToggle.addEventListener('click', toggleTOC);
+            tocIcon.addEventListener('click', toggleTOC);
+
+            // Responsive design
+            function handleResize() {
+                if (window.innerWidth <= 1024) {
+                    sidebarLeft.classList.add('hidden');
+                    tocIcon.style.display = 'none';
+                } else {
+                    sidebarLeft.classList.remove('hidden');
+                    if (tocHidden) {
+                        tocIcon.style.display = 'block';
+                    }
+                }
+            }
+
+            window.addEventListener('resize', handleResize);
+            handleResize(); // Initial call
+        });
+    </script>
+</body>
+</html>
