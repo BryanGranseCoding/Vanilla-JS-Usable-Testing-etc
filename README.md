@@ -1,2 +1,3 @@
 # Bryan Granse Resuable Codes in JS
-This repository is all about a useful codes that might be useful in the future, all of the files here is JavaScript code.
+This repository is all about a useful codes that might be useful in the future, 
+all of the files here is Vanilla JavaScript code.
