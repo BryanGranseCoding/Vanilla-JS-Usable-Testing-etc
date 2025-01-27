@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hide Element</title>
+</head>
+<body>
+    <div id="bgHideMe">This element will be hidden on specific dates.</div>
+
+    <script>
+        function hideElementIfInRange(elementId, startDate, endDate) {
+            const element = document.getElementById(elementId);
+            const currentDate = new Date();
+            const start = new Date(startDate);
+            const end = new Date(endDate);
+
+            if (currentDate >= start && currentDate <= end) {
+                element.style.display = "none";
+            }
+        }
+
+        // Usage
+        hideElementIfInRange("bgHideMe", "2025-01-27", "2025-02-05");
+    </script>
+</body>
+</html>
